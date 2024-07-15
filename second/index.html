@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+<div id="app">
+    <div style="display: flex; flex-direction:column;align-items: center;">
+    <h1>{{title}}</h1>
+    <form @submit.prevent="onSubmit">
+    <label for="txt" v-if="hiddenInput == false"> Ввод текста
+        <input id="txt" type="text" v-model="input.value" :placeholder="input.placeholder" required>
+    </label>
+        <label for="update" v-if="hiddenInput == true"> Редактирование текста
+        <input id="update" type="text" v-model="input.value" :placeholder="input.placeholder" required>
+        </label>
+    <p style="color:red;">{{input.value}}</p>
+        <button style="padding:10px;background-color:blue; color:white;cursor:pointer;" type="submit"> {{ btnName }}</button>
+    </form>
+    <div class="notes">
+        <div class="note" v-for="(note, index) in notes" :key="index">
+            <p>{{ note }}
+                <span style="cursor:pointer;" @click="remove(index)" ><img style="width:16px;" src="icon-trash.png" alt="trash"></span>
+                <span style="cursor:pointer;" @click="update(index)"><img style="width:16px;" src="pen.svg" alt="pen"></span>
+            </p>
+        </div>
+    </div>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
